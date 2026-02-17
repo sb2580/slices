@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Molecular Cloud Formation in the ISM</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 24px;
+      color: #24292f;
+    }
+    #readme {
+      margin-bottom: 32px;
+    }
+    #readme a {
+      color: #0969da;
+    }
+    iframe {
+      width: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="readme">Loading...</div>
+
+  <iframe id="viz" src="viz.html" scrolling="no"></iframe>
+
+  <script>
+    // Render README.md
+    fetch("README.md")
+      .then(r => r.text())
+      .then(text => {
+        document.getElementById("readme").innerHTML = marked.parse(text);
+      });
+
+    // Auto-resize iframe to fit its content
+    const iframe = document.getElementById("viz");
+    iframe.addEventListener("load", () => {
+      iframe.style.height = iframe.contentDocument.body.scrollHeight + "px";
+    });
+  </script>
+
+</body>
+</html>
